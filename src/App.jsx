@@ -1,30 +1,33 @@
-import { useState } from "react"
-import Header from "./components/Header.jsx"
-import UserInput from "./components/UserInput.jsx"
+import { useState } from "react";
+import Header from "./components/Header.jsx";
+import UserInput from "./components/UserInput.jsx";
 import Results from "./components/Results.jsx";
 
 function App() {
   const [userInput, setUserInput] = useState({
     initialInvestment: 10000,
     annualInvestment: 1200,
-    expectedInvestment: 6,
-    duration: 10,
+    expectedReturn: 6,
+    duration: 5,
   });
 
   function handleChange(inputIdentifier, newValue) {
-    setUserInput(prevUserInput => {
+    setUserInput((prevUserInput) => {
       return {
         ...prevUserInput,
-        [inputIdentifier]: newValue
+        [inputIdentifier]: +newValue
       };
     });
   }
+
+  const inputIsValid = userInput.duration >= 1;
 
   return (
     <>
       <Header />
       <UserInput userInputInfo={userInput} onChange={handleChange} />
-      <Results input={userInput} />
+      {/* {!inputIsValid && <p className="center">Please only enter positive number</p>} */}
+      {inputIsValid ? <Results input={userInput} /> : <p className="center">Please only enter positive number</p>}
     </>
   )
 }
