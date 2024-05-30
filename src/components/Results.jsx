@@ -11,11 +11,11 @@ export default function Results({ input }) {
     <table id="result">
       <thead>
         <tr>
-          <th>Year</th>
-          <th>Investment Value</th>
-          <th>Interest (Year)</th>
-          <th>Total Interest</th>
-          <th>Invested Capital</th>
+          <th>年度/Year</th>
+          <th>總資產/Investment Value</th>
+          <th>年度利息/Interest (Year)</th>
+          <th>總利息/Total Interest</th>
+          <th>投入本金/Invested Capital</th>
         </tr>
       </thead>
       <tbody>

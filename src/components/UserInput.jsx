@@ -3,6 +3,7 @@ export default function UserInput({ onChange, userInputInfo }) {
     <section id="user-input">
       <div className="input-group">
         <p>
+          <label>初始投資</label>
           <label>Initial Investment</label>
           <input
             type="number"
@@ -12,6 +13,7 @@ export default function UserInput({ onChange, userInputInfo }) {
           />
         </p>
         <p>
+          <label>年投資金額</label>
           <label>Annual Investment</label>
           <input
             type="number"
@@ -23,16 +25,18 @@ export default function UserInput({ onChange, userInputInfo }) {
       </div>
       <div className="input-group">
         <p>
+          <label>年化報酬率</label>
           <label>Expected Return</label>
           <input
             type="number"
             required
-            value={userInputInfo.expectedInvestment}
-            onChange={(event) => onChange('expectedInvestment', event.target.value)}
+            value={userInputInfo.expectedReturn}
+            onChange={(event) => onChange('expectedReturn', event.target.value)}
           />
         </p>
         <p>
-          <label>Duration</label>
+          <label>投資期間(/年)</label>
+          <label>Duration(per annum)</label>
           <input
             type="number"
             required
