@@ -1,11 +1,14 @@
 import { calculateInvestmentResults, formatter } from "../util/investment.js"
+import React, { useEffect, useState } from "react";
 
-export default function Results({ input }) {
-  console.log(input);
-  const resultsData = calculateInvestmentResults(input);
-  const initialInvestment =
-    resultsData[0].valueEndOfYear - resultsData[0].interest - resultsData[0].annualInvestment;
-  // console.log(resultsData);
+export default function Results({ input, onResultsChange }) {
+  const [resultsData, setResultsData] = useState([]);
+
+  useEffect(() => {
+    const results = calculateInvestmentResults(input);
+    setResultsData(results);
+    onResultsChange(results);
+  }, [input, onResultsChange]); // 只在 input 或 onResultsChange 改變後才再次計算
 
   return (
     <table id="result">
@@ -20,9 +23,10 @@ export default function Results({ input }) {
       </thead>
       <tbody>
         {resultsData.map(yearData => {
+          const initialInvestment =
+            resultsData[0].valueEndOfYear - resultsData[0].interest - resultsData[0].annualInvestment;
           const totalInterest =
             yearData.valueEndOfYear - yearData.annualInvestment * yearData.year - initialInvestment;
-
           const totalAmountInvested = yearData.valueEndOfYear - totalInterest;
 
           return <tr key={yearData.year} >
