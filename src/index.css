@@ -31,10 +31,15 @@ body {
   font-size: 1.5rem;
 }
 
+.userinput {
+  display: flex;
+  justify-content: center;
+}
+
 #user-input {
   padding: 1rem;
   max-width: 30rem;
-  margin: 2rem auto;
+  margin: 2rem 3rem;
   border-radius: 4px;
   background: linear-gradient(180deg, #307e6c, #2b996d);
 }
@@ -68,7 +73,8 @@ body {
   font-size: 1rem;
 }
 
-#result {
+#result,
+#comparison-result {
   max-width: 50rem;
   margin: 2rem auto;
   padding: 1rem;
@@ -77,12 +83,14 @@ body {
   text-align: right;
 }
 
-#result thead {
+#result thead,
+#comparison-result thead {
   font-size: 0.7rem;
   color: #83e6c0;
 }
 
-#result tbody {
+#result tbody,
+#comparison-result tbody {
   font-family: 'Roboto Condensed', sans-serif;
   font-size: 0.85rem;
   color: #c2e9e0;
@@ -93,5 +101,5 @@ body {
 }
 
 .chart {
-  margin: 0 15rem
+  margin: 0 15rem 5rem
 }

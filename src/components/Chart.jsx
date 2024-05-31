@@ -22,7 +22,7 @@ ChartJS.register(
   Legend
 );
 
-const Chart = ({ data }) => {
+const Chart = ({ data = [], comparisonData = [] }) => {
   const chartData = {
     labels: data.map((entry) => `Year ${entry.year}`),
     datasets: [
@@ -33,12 +33,21 @@ const Chart = ({ data }) => {
         backgroundColor: 'rgba(75, 192, 192, 0.2)',
         fill: false,
       },
+      {
+        label: 'Your investment Value - Set 2',
+        data: comparisonData.map((entry) => entry.valueEndOfYear),
+        borderColor: 'rgba(153, 102, 255, 1)',
+        backgroundColor: 'rgba(153, 102, 255, 0.2)',
+        fill: false,
+      },
     ],
   };
 
   return (
-    <div className="chart">
+    <div className='chart'>
       <Line data={chartData} />
+      <br />
+      <p className='center'>Life is like a snowball, all you need is wet snow and a really long hill. -- Warren Buffett</p>
     </div>
   );
 };
