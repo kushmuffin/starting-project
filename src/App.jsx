@@ -21,13 +21,13 @@ function App() {
 
   const [resultsData, setResultsData] = useState([]);
   //comparison group
-  const [comparisonResultsData, setComparisonResultsData] = useState([]);
+  const [comparisResultsData, setComparisonResultsData] = useState([]);
 
   function handleChange(inputIdentifier, newValue) {
     setUserInput((prevUserInput) => {
       return {
         ...prevUserInput,
-        [inputIdentifier]: +newValue
+        [inputIdentifier]: +newValue,
       };
     });
   }
@@ -36,7 +36,7 @@ function App() {
     setComparisonInput((prevComparisonInput) => {
       return {
         ...prevComparisonInput,
-        [inputIdentifier]: +newValue
+        [inputIdentifier]: +newValue,
       };
     });
   }
@@ -45,11 +45,15 @@ function App() {
     setResultsData(newResultsData);
   }, []);
   //comparison group
-  const handleComparisonResultsChange = useCallback((newComparisonResultsData) => {
-    setComparisonResultsData(newComparisonResultsData);
-  }, []);
+  const handleComparisonResultsChange = useCallback(
+    (newComparisonResultsData) => {
+      setComparisonResultsData(newComparisonResultsData);
+    },
+    []
+  );
 
   const inputIsValid = userInput.duration >= 1;
+  const inputIsValidCompairs = comparisonInput.duration >= 1;
 
   return (
     <>
@@ -63,22 +67,22 @@ function App() {
         />
       </div>
       {/* {!inputIsValid && <p className="center">Please only enter positive number</p>} */}
-      {inputIsValid ? (
+      {inputIsValid && inputIsValidCompairs ? (
         <>
+          <Chart data={resultsData} comparisonData={comparisResultsData} />
           <Results
             input={userInput}
             onResultsChange={handleResultsChange}
             comparisInput={comparisonInput}
             onComparisResultsChange={handleComparisonResultsChange}
           />
-          <Chart data={resultsData} />
         </>
       ) : (
         <p className="center">Please only enter positive number</p>
       )}
       {/* <Chart type='bar' data={ } options={""} /> */}
     </>
-  )
+  );
 }
 
-export default App
+export default App;
