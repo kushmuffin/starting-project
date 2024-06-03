@@ -5,33 +5,41 @@ import Results from "./components/Results.jsx";
 import Chart from "./components/Chart.jsx";
 
 function App() {
+  // 初始值
   const [userInput, setUserInput] = useState({
     initialInvestment: 100000,
     annualInvestment: 30000,
     expectedReturn: 6,
     duration: 20,
   });
-  //comparison group
   const [comparisonInput, setComparisonInput] = useState({
     initialInvestment: 5000,
     annualInvestment: 800,
     expectedReturn: 5,
-    duration: 5,
+    duration: 20,
   });
 
+  // hook -- useState
   const [resultsData, setResultsData] = useState([]);
-  //comparison group
   const [comparisResultsData, setComparisonResultsData] = useState([]);
 
+  // 處理輸入的值
   function handleChange(inputIdentifier, newValue) {
     setUserInput((prevUserInput) => {
-      return {
+      const updatedUserInput = {
         ...prevUserInput,
         [inputIdentifier]: +newValue,
       };
+      // 如果 inputIdentifier 是 duration，同時更新 comparisonInput 的 duration
+      if (inputIdentifier === "duration") {
+        setComparisonInput((prevComparisonInput) => ({
+          ...prevComparisonInput,
+          duration: +newValue,
+        }));
+      }
+      return updatedUserInput;
     });
   }
-  //comparison group
   function handleChangeComparison(inputIdentifier, newValue) {
     setComparisonInput((prevComparisonInput) => {
       return {
@@ -44,7 +52,6 @@ function App() {
   const handleResultsChange = useCallback((newResultsData) => {
     setResultsData(newResultsData);
   }, []);
-  //comparison group
   const handleComparisonResultsChange = useCallback(
     (newComparisonResultsData) => {
       setComparisonResultsData(newComparisonResultsData);

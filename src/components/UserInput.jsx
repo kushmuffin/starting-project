@@ -1,4 +1,9 @@
-export default function UserInput({ onChange, userInputInfo, onChangeComparison, comparisonUserInputInfo }) {
+export default function UserInput({
+  onChange,
+  userInputInfo,
+  onChangeComparison,
+  comparisonUserInputInfo,
+}) {
   return (
     <>
       <section id="user-input">
@@ -10,7 +15,9 @@ export default function UserInput({ onChange, userInputInfo, onChangeComparison,
               type="number"
               required
               value={userInputInfo.initialInvestment}
-              onChange={(event) => onChange('initialInvestment', event.target.value)}
+              onChange={(event) =>
+                onChange("initialInvestment", event.target.value)
+              }
             />
           </p>
           <p>
@@ -20,7 +27,9 @@ export default function UserInput({ onChange, userInputInfo, onChangeComparison,
               type="number"
               required
               value={userInputInfo.annualInvestment}
-              onChange={(event) => onChange('annualInvestment', event.target.value)}
+              onChange={(event) =>
+                onChange("annualInvestment", event.target.value)
+              }
             />
           </p>
         </div>
@@ -32,7 +41,9 @@ export default function UserInput({ onChange, userInputInfo, onChangeComparison,
               type="number"
               required
               value={userInputInfo.expectedReturn}
-              onChange={(event) => onChange('expectedReturn', event.target.value)}
+              onChange={(event) =>
+                onChange("expectedReturn", event.target.value)
+              }
             />
           </p>
           <p>
@@ -42,7 +53,7 @@ export default function UserInput({ onChange, userInputInfo, onChangeComparison,
               type="number"
               required
               value={userInputInfo.duration}
-              onChange={(event) => onChange('duration', event.target.value)}
+              onChange={(event) => onChange("duration", event.target.value)}
             />
           </p>
         </div>
@@ -57,7 +68,9 @@ export default function UserInput({ onChange, userInputInfo, onChangeComparison,
               type="number"
               required
               value={comparisonUserInputInfo.initialInvestment}
-              onChange={(event) => onChangeComparison('initialInvestment', event.target.value)}
+              onChange={(event) =>
+                onChangeComparison("initialInvestment", event.target.value)
+              }
             />
           </p>
           <p>
@@ -67,7 +80,9 @@ export default function UserInput({ onChange, userInputInfo, onChangeComparison,
               type="number"
               required
               value={comparisonUserInputInfo.annualInvestment}
-              onChange={(event) => onChangeComparison('annualInvestment', event.target.value)}
+              onChange={(event) =>
+                onChangeComparison("annualInvestment", event.target.value)
+              }
             />
           </p>
         </div>
@@ -79,7 +94,9 @@ export default function UserInput({ onChange, userInputInfo, onChangeComparison,
               type="number"
               required
               value={comparisonUserInputInfo.expectedReturn}
-              onChange={(event) => onChangeComparison('expectedReturn', event.target.value)}
+              onChange={(event) =>
+                onChangeComparison("expectedReturn", event.target.value)
+              }
             />
           </p>
           <p>
@@ -88,12 +105,15 @@ export default function UserInput({ onChange, userInputInfo, onChangeComparison,
             <input
               type="number"
               required
-              value={comparisonUserInputInfo.duration}
-              onChange={(event) => onChangeComparison('duration', event.target.value)}
+              disabled
+              value={userInputInfo.duration}
+              onChange={(event) =>
+                onChangeComparison("duration", event.target.value)
+              }
             />
           </p>
         </div>
       </section>
     </>
-  )
+  );
 }
